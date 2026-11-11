@@ -1,31 +1,43 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# BackGold status page — https://status.backgold.com
+# Monitoring runs on GitHub Actions and the page is served by GitHub Pages:
+# nothing here runs on Cloudflare, so the page stays up when BackGold is down.
+# Reference: https://upptime.js.org/docs/configuration
+owner: BackGoldHQ
+repo: status
+user-agent: BackGoldHQ-status
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Marketing site
+    url: https://backgold.com
+  - name: Operator app
+    url: https://app.backgold.com
+  - name: Donate pages
+    url: https://secure.backgold.com
+  - name: Donor portal
+    url: https://giving.backgold.com
+  - name: API
+    url: https://api.backgold.com/health
+    expectedStatusCodes:
+      - 200
+    __dangerous__body_down_if_text_missing: healthy
+  - name: Realtime (chat, calls, presence)
+    url: https://realtime.backgold.com/health
+    expectedStatusCodes:
+      - 200
+
+assignees:
+  - jhliberty
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.backgold.com
+  logoUrl: https://raw.githubusercontent.com/BackGoldHQ/status/master/assets/backgold-logo.svg
+  name: BackGold Status
+  introTitle: "Current status of **BackGold** services."
+  introMessage: Checks run every five minutes from GitHub Actions, and this page is served by GitHub Pages, so it stays up when our own infrastructure does not. Incidents are posted as issues in the [status repository](https://github.com/BackGoldHQ/status/issues?q=is%3Aissue+label%3Astatus).
   navbar:
     - title: Status
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
-
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+    - title: Incidents
+      href: https://github.com/BackGoldHQ/status/issues?q=is%3Aissue+label%3Astatus
+    - title: BackGold
+      href: https://backgold.com
